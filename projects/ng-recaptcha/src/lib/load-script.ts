@@ -45,6 +45,7 @@ function loadScript(
 function newLoadScript({
   v3SiteKey,
   onBeforeLoad,
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   onLoaded,
 }: { v3SiteKey: string | undefined; onLoaded(recaptcha: ReCaptchaV2.ReCaptcha): void } & Pick<
   Required<RecaptchaLoaderOptions>,

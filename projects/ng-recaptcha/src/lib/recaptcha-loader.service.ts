@@ -39,8 +39,7 @@ export class RecaptchaLoaderService {
   private options?: RecaptchaLoaderOptions;
 
   constructor(
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    @Inject(PLATFORM_ID) private readonly platformId: Object,
+    @Inject(PLATFORM_ID) private readonly platformId: object,
     // eslint-disable-next-line deprecation/deprecation
     @Optional() @Inject(RECAPTCHA_LANGUAGE) language?: string,
     // eslint-disable-next-line deprecation/deprecation

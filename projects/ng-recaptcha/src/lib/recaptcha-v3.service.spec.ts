@@ -242,10 +242,10 @@ describe("ReCaptchaV3Service", () => {
 
     // Act
     let executionError: string;
-    service.execute("test action").subscribe(
-      () => void 0,
-      (error) => (executionError = error as string),
-    );
+    service.execute("test action").subscribe({
+      next: () => void 0,
+      error: (error) => (executionError = error as string),
+    });
     mockGrecaptcha.executionReject("test action", "test error");
     await nextTick();
 
@@ -262,10 +262,10 @@ describe("ReCaptchaV3Service", () => {
 
     // Act
     let executionError: Error;
-    service.execute("test action").subscribe(
-      () => void 0,
-      (error) => (executionError = error as Error),
-    );
+    service.execute("test action").subscribe({
+      next: () => void 0,
+      error: (error) => (executionError = error as Error),
+    });
     await nextTick();
 
     // Assert

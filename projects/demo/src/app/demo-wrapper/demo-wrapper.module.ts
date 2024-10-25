@@ -1,6 +1,6 @@
 import { LayoutModule } from "@angular/cdk/layout";
 import { APP_INITIALIZER, NgModule } from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { BrowserModule } from "@angular/platform-browser";
 
 import { MatButtonModule } from "@angular/material/button";
@@ -29,6 +29,7 @@ function appLoadFactory(config: ConfigService) {
 @NgModule({
   bootstrap: [DemoWrapperComponent],
   declarations: [DemoWrapperComponent],
+  exports: [DemoWrapperComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -45,9 +46,7 @@ function appLoadFactory(config: ConfigService) {
     MatRadioModule,
     LayoutModule,
     DemoWrapperRoutingModule,
-    HttpClientModule,
   ],
-  exports: [DemoWrapperComponent],
   providers: [
     { provide: NAV_LINKS, useValue: navLinks },
     {
@@ -56,6 +55,7 @@ function appLoadFactory(config: ConfigService) {
       deps: [ConfigService],
       multi: true,
     },
+    provideHttpClient(withInterceptorsFromDi()),
   ],
 })
 export class DemoWrapperModule {}

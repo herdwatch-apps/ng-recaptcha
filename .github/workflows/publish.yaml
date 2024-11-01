@@ -1,0 +1,81 @@
+name: Publishing
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          registry-url: "https://registry.npmjs.org"
+          cache: "yarn"
+          node-version-file: ".nvmrc"
+      - run: yarn
+      - run: yarn run lib:build
+      - run: yarn run demo:build
+      - run: yarn run lint
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          retention-days: "1"
+          path: ./dist
+
+  unit:
+    runs-on: ubuntu-latest
+    needs: [prepare]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          registry-url: "https://registry.npmjs.org"
+          cache: "yarn"
+          node-version-file: ".nvmrc"
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: ${{ github.workspace }}/dist
+      - run: yarn
+      - run: yarn run lib:test
+
+  e2e:
+    runs-on: ubuntu-latest
+    needs: [prepare]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          registry-url: "https://registry.npmjs.org"
+          cache: "yarn"
+          node-version-file: ".nvmrc"
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: ${{ github.workspace }}/dist
+      - run: yarn
+      - run: yarn run e2e
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: [unit, e2e]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          registry-url: "https://registry.npmjs.org"
+          cache: "yarn"
+          node-version-file: ".nvmrc"
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: ${{ github.workspace }}/dist
+      - name: Publish
+        working-directory: ./dist/ng-recaptcha
+        run: npm publish --access public --tag ${{github.ref_name == 'master' && 'latest' || 'next' }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -15,7 +15,8 @@ import { Subscription } from "rxjs";
   templateUrl: "./v3-demo.component.html",
 })
 export class RecaptchaV3DemoComponent implements OnInit, OnDestroy {
-  public recentToken = "";
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  public recentToken: string = "";
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public recentError?: { error: any };
   public readonly executionLog: Array<OnExecuteData | OnExecuteErrorData> = [];
@@ -30,17 +31,20 @@ export class RecaptchaV3DemoComponent implements OnInit, OnDestroy {
     if (this.singleExecutionSubscription) {
       this.singleExecutionSubscription.unsubscribe();
     }
-    this.singleExecutionSubscription = this.recaptchaV3Service.execute(action).subscribe(
-      (token) => {
+    this.singleExecutionSubscription = this.recaptchaV3Service.execute(action).subscribe({
+      next(token) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         this.recentToken = token;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         this.recentError = undefined;
       },
-      (error) => {
+      error: (error) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         this.recentToken = "";
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment
         this.recentError = { error };
       },
-    );
+    });
   }
 
   public ngOnInit(): void {

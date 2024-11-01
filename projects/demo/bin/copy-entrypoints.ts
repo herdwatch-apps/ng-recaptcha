@@ -22,7 +22,16 @@ function getProp<T extends string[]>(value: unknown, ...propPath: T): unknown {
 }
 
 function readOutputPath(angularConfiguration: unknown): string {
-  const outputPath = getProp(angularConfiguration, "projects", "demo", "architect", "build", "options", "outputPath");
+  const outputPath = getProp(
+    angularConfiguration,
+    "projects",
+    "demo",
+    "architect",
+    "build",
+    "options",
+    "outputPath",
+    "base",
+  );
 
   if (typeof outputPath !== "string") {
     throw new Error(`Expected outputPath to be of type string but got this type instead: ${typeof outputPath}`);

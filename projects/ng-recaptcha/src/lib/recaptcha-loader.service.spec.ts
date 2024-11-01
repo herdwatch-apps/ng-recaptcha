@@ -170,8 +170,7 @@ describe("RecaptchaLoaderService", () => {
         {
           provide: RecaptchaLoaderService,
           useFactory(platformId: unknown) {
-            // eslint-disable-next-line @typescript-eslint/ban-types
-            service1 = new RecaptchaLoaderService(platformId as Object);
+            service1 = new RecaptchaLoaderService(platformId as object);
             return service1;
           },
           deps: [PLATFORM_ID],
@@ -186,8 +185,7 @@ describe("RecaptchaLoaderService", () => {
         {
           provide: RecaptchaLoaderService,
           useFactory(platformId: unknown) {
-            // eslint-disable-next-line @typescript-eslint/ban-types
-            service2 = new RecaptchaLoaderService(platformId as Object);
+            service2 = new RecaptchaLoaderService(platformId as object);
             return service2;
           },
           deps: [PLATFORM_ID],

@@ -14,7 +14,7 @@ module.exports = {
           "./projects/ng-recaptcha/tsconfig.spec.json",
           "./projects/ng-recaptcha/tsconfig.lib.json",
           "./projects/ng-recaptcha/tsconfig.lib.prod.json",
-          "./projects/demo/cypress/tsconfig.json",
+          "./projects/demo-e2e/tsconfig.json",
           "./projects/demo/tsconfig.app.json",
           "./tsconfig.node.json",
           "./tsconfig.json",

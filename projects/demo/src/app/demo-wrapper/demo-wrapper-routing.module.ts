@@ -7,7 +7,7 @@ const routes: Routes = [
   ...examples.map((e) => ({
     path: e.name,
     loadChildren: () =>
-      import(`../examples/${e.name}/${e.name}-demo.module`).then(
+      import(`../examples/${e.name}/${e.name}-demo.module.ts`).then(
         // eslint-disable-next-line
         (m) => m.DemoModule,
       ),

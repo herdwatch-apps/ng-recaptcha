@@ -1,14 +1,14 @@
 {
   "name": "@herdwatch/ng-recaptcha",
   "description": "Angular component for Google reCAPTCHA",
-  "version": "13.2.3-dev.0",
+  "version": "13.2.1-fix.1",
   "author": "Ruslan Arkhipau <dethariel@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DethAriel/ng-recaptcha"
+    "url": "git+https://github.com/herdwatch-apps/ng-recaptcha"
   },
-  "homepage": "https://github.com/DethAriel/ng-recaptcha#readme",
+  "homepage": "https://github.com/herdwatch-apps/ng-recaptcha#readme",
   "keywords": [
     "angular",
     "recaptcha",

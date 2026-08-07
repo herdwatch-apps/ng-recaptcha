@@ -1,5 +1,16 @@
 # Angular component for Google reCAPTCHA
 
+## Why this fork exists
+
+Forked to publish under the `@herdwatch` npm scope.
+
+Published as [`@herdwatch/ng-recaptcha`](https://www.npmjs.com/package/@herdwatch/ng-recaptcha).
+
+Changes from upstream (based on [`v13.2.1`](https://github.com/DethAriel/ng-recaptcha/releases/tag/v13.2.1)):
+- Renamed the publishable package to `@herdwatch/ng-recaptcha`.
+- Upgraded to Angular 18.
+- Added a GitHub Actions workflow that publishes to npm on push to `master`/`develop`, using npm Trusted Publishers (OIDC) — no long-lived npm token.
+
 ## ng-recaptcha [![npm version](https://badge.fury.io/js/ng-recaptcha.svg)](https://www.npmjs.com/package/ng-recaptcha)
 
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/dethariel/ng-recaptcha/master/LICENSE)

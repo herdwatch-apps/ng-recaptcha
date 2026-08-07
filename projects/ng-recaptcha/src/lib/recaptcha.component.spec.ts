@@ -10,6 +10,8 @@ import {
 } from "..";
 import { MockRecaptchaLoaderService } from "./test-utils/mock-recaptcha-loader.service.spec";
 
+window.onbeforeunload = () => "Oh no!";
+
 describe("RecaptchaComponent", () => {
   let component: RecaptchaComponent;
   let fixture: ComponentFixture<RecaptchaComponent>;

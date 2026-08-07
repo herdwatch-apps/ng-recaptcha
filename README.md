@@ -6,7 +6,10 @@ Forked to publish under the `@herdwatch` npm scope.
 
 Published as [`@herdwatch/ng-recaptcha`](https://www.npmjs.com/package/@herdwatch/ng-recaptcha).
 
-`master` (this branch) carries no behavioural changes from [upstream](https://github.com/DethAriel/ng-recaptcha) — it is byte-for-byte identical to upstream commit `e32d5aa` (one trivial docs commit past the `v13.2.1` tag, the closest available match). All of Herdwatch's actual changes — the `@herdwatch/ng-recaptcha` rename, an Angular 18 upgrade, and a GitHub Actions publish workflow — live on the separate, unmerged `develop` branch, whose tip commit matches the `gitHead` of the package currently published to npm (`@herdwatch/ng-recaptcha@13.2.3-dev.0`).
+Changes from upstream (based on [`v13.2.1`](https://github.com/DethAriel/ng-recaptcha/releases/tag/v13.2.1)):
+- Renamed the publishable package to `@herdwatch/ng-recaptcha`.
+- Upgraded to Angular 18.
+- Added a GitHub Actions workflow that publishes to npm on push to `master`/`develop`, using npm Trusted Publishers (OIDC) — no long-lived npm token.
 
 ## ng-recaptcha [![npm version](https://badge.fury.io/js/ng-recaptcha.svg)](https://www.npmjs.com/package/ng-recaptcha)
 

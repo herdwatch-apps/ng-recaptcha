@@ -1,7 +1,7 @@
 {
-  "name": "ng-recaptcha",
+  "name": "@herdwatch/ng-recaptcha",
   "description": "Angular component for Google reCAPTCHA",
-  "version": "13.2.1",
+  "version": "13.2.3-dev.0",
   "author": "Ruslan Arkhipau <dethariel@gmail.com>",
   "license": "MIT",
   "repository": {
@@ -16,10 +16,10 @@
     "ng-recaptcha"
   ],
   "peerDependencies": {
-    "@angular/core": "^17.0.0"
+    "@angular/core": "^18.0.1"
   },
   "dependencies": {
-    "@types/grecaptcha": "^3.0.7",
+    "@types/grecaptcha": "^3.0.9",
     "tslib": "^2.2.0"
   }
 }

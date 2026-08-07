@@ -21,3 +21,5 @@ export {
   RECAPTCHA_LOADER_OPTIONS,
   RecaptchaLoaderOptions,
 } from "./lib/tokens";
+
+export { provideEnvironmentRecaptchaV3Services, provideRecaptchaV3Services } from "./lib/recaptcha-v3.providers";

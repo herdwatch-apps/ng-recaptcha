@@ -15,8 +15,8 @@ jobs:
   prepare:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           registry-url: "https://registry.npmjs.org"
           cache: "yarn"
@@ -25,7 +25,7 @@ jobs:
       - run: yarn run lib:build
       - run: yarn run demo:build
       - run: yarn run lint
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: dist
           retention-days: "1"
@@ -35,13 +35,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: [prepare]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           registry-url: "https://registry.npmjs.org"
           cache: "yarn"
           node-version-file: ".nvmrc"
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: dist
           path: ${{ github.workspace }}/dist
@@ -52,30 +52,34 @@ jobs:
     runs-on: ubuntu-latest
     needs: [prepare]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           registry-url: "https://registry.npmjs.org"
           cache: "yarn"
           node-version-file: ".nvmrc"
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: dist
           path: ${{ github.workspace }}/dist
-      - run: yarn
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+      - run: yarn || yarn || yarn
       - run: yarn run e2e
 
   publish:
     runs-on: ubuntu-latest
     needs: [unit, e2e]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           registry-url: "https://registry.npmjs.org"
           cache: "yarn"
           node-version-file: ".nvmrc"
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: dist
           path: ${{ github.workspace }}/dist

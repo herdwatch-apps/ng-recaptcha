@@ -8,6 +8,7 @@ Published as [`@herdwatch/ng-recaptcha`](https://www.npmjs.com/package/@herdwatc
 
 Changes from upstream (based on [`v13.2.1`](https://github.com/DethAriel/ng-recaptcha/releases/tag/v13.2.1)):
 - Renamed the publishable package to `@herdwatch/ng-recaptcha`.
+- Added `provideRecaptchaV3Services` and `provideEnvironmentRecaptchaV3Services`, so reCAPTCHA v3 can be configured through Angular's standalone provider APIs. Upstream exports only `RecaptchaV3Module`.
 - Upgraded to Angular 18.
 - Added a GitHub Actions workflow that publishes to npm on push to `master`/`develop`, using npm Trusted Publishers (OIDC) — no long-lived npm token.
 

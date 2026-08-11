@@ -1,3 +1,33 @@
+<a name="13.2.4"></a>
+
+## 13.2.4 (2026-08-11)
+
+The same code as `13.2.3-dev.0`, released under a plain version number. Nothing in the
+library changed; see the note on numbering below for why the version jumps.
+
+### Features
+
+- **v3:** `provideRecaptchaV3Services` and `provideEnvironmentRecaptchaV3Services`, for
+  configuring reCAPTCHA v3 through Angular's standalone provider APIs rather than
+  `RecaptchaV3Module`. Not present upstream, which exports only the module.
+
+### Chore
+
+- Published as `@herdwatch/ng-recaptcha`, with `repository` and `homepage` pointing at this
+  fork.
+- Upgraded to Angular 18.
+- Publishing runs from CI through npm Trusted Publishers, with no long-lived npm token, and
+  skips when the version is already on the registry.
+
+### A note on the version number
+
+This fork published `13.2.2-dev.0` and `13.2.3-dev.0` from `develop`, and later
+`13.2.1-fix.1` from `master`. That last one sorts _below_ all three, so `latest` pointed at
+the oldest of the four, and a consumer with `^13.2.1` resolved to upstream's plain `13.2.1`
+rather than to any fork build. `13.2.4` sorts above everything published so far and carries
+no prerelease suffix, which settles both. The two `-dev` versions are left in place; nothing
+should depend on them.
+
 <a name="13.2.1"></a>
 
 ## [13.2.1](https://github.com/DethAriel/ng-recaptcha/compare/v13.2.0...v13.2.1) (2023-11-25)

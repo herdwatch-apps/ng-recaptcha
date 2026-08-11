@@ -79,6 +79,27 @@ jobs:
         with:
           name: dist
           path: ${{ github.workspace }}/dist
+      # Every push to master or develop reaches this job, but only a release commit changes
+      # the version. Without this check the rest fail on npm's 403 for an existing version --
+      # after a full build, unit and e2e cycle -- which reads as a broken pipeline rather than
+      # as nothing to publish. Reads the built manifest rather than a source one, since that is
+      # the file npm actually publishes.
+      - name: Check whether this version is new
+        id: version
+        working-directory: ./dist/ng-recaptcha
+        run: |
+          NAME=$(node -p "require('./package.json').name")
+          VERSION=$(node -p "require('./package.json').version")
+          echo "spec=$NAME@$VERSION" >> "$GITHUB_OUTPUT"
+
+          if npm view "$NAME@$VERSION" version > /dev/null 2>&1; then
+            echo "new=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::$NAME@$VERSION is already published; nothing to do."
+          else
+            echo "new=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Publish
+        if: steps.version.outputs.new == 'true'
         working-directory: ./dist/ng-recaptcha
         run: npm publish --access public --tag ${{github.ref_name == 'master' && 'latest' || 'next' }}
